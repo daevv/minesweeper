@@ -1,0 +1,136 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+}
+.app {
+	background: url(/img/bg/bg.jpg) no-repeat;
+	background-size: auto auto;
+	position : absolute;
+	width : 100%;
+	height : 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.title {
+	text-align: center;
+	padding-top: 20px;
+	letter-spacing: 2.3px;
+	font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	text-shadow: 1px 1px 3px darkgray;
+	color:bisque
+}
+
+.main {
+	margin: 50px auto;
+	align-content: center;
+	width: 256px;
+	height: 300px;
+	background-color: lightgray;
+}
+.matrix {
+	background-color: gray;
+	max-width: 256px;
+	max-height: 256px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.header {
+	height: 40x;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border: 8px solid grey;
+}
+
+.smile{
+	background: url('../img/smile/smile.png') no-repeat;
+	width: 26px;
+	height: 26px;
+	border: none;
+}
+
+.cell {
+	background: url("../img/blocks/block_button.png") no-repeat;
+	width: 16px;
+	height: 16px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.empty {
+	background: url("../img/blocks/empty_block.png") no-repeat;
+}
+
+.tile-clicked {
+	background: url("../img/blocks/empty_block.png") no-repeat;
+}
+
+.x1 {
+	background: url("../img/nums_for_blocks/one.png") no-repeat;
+}
+.x2 {
+	background: url("../img/nums_for_blocks/two.png") no-repeat;
+}
+
+.x3 {
+	background: url("../img/nums_for_blocks/three.png") no-repeat;
+}
+
+.x4 {
+	background: url("../img/nums_for_blocks/four.png") no-repeat;
+}
+
+.x5 {
+	background: url("../img/nums_for_blocks/five.png") no-repeat;
+}
+
+.x6 {
+	background: url("../img/nums_for_blocks/six.png") no-repeat;
+}
+
+.x7 {
+	background: url("../img/nums_for_blocks/seven.png") no-repeat;
+}
+
+.x8 {
+	background: url("../img/nums_for_blocks/eight.png") no-repeat;
+}
+
+.bomb {
+	background: url("../img/blocks/bomb.png") no-repeat;
+}
+
+.flagged {
+	background: url("../img/blocks/flag.png") no-repeat;
+}
+
+.questioned {
+	background: url("../img/blocks/question_button.png") no-repeat;
+}
+
+.not-a-bomb {
+	background: url("../img/blocks/not_a_bomb.png") no-repeat;
+}
+
+.counter, .timer {
+	display: flex;
+	flex-wrap: wrap;	
+}
+
+.dig, .num {
+	height: 23px;
+	width: 13px;
+}
+
+.test {
+	background: url("../img/smile/smile_pressed.png");
+}
+
