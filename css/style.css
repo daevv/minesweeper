@@ -4,7 +4,7 @@
 	padding: 0px;
 }
 .app {
-	background: url(/img/bg/bg.jpg) no-repeat;
+	background: url("../img/bg/bg.jpg") no-repeat;
 	background-size: auto auto;
 	position : absolute;
 	width : 100%;
