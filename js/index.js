@@ -32,32 +32,32 @@ function createSmile() {
     smile.addEventListener('click', reset); //reseting game
     smile.addEventListener('mousedown', (event) => {
         if (event.button == 0){
-            smile.backgroundImage = "url('../img/blocks/smile_pressed.png')";
+            smile.classList.toggle('smile-pressed')
         }
     }); //keydown
     smile.addEventListener('mouseup', (event) => {
         if (event.button == 0){
-            smile.style.backgroundImage = "url('../img/smile/smile.png')";
+            smile.classList.toggle('smile-pressed')
         }
     }); //keyup
 }
 
 function createCounter() {
     for(let i = 0; i<3; i++) {
-        let dig = document.createElement('img');
+        let dig = document.createElement('div');
         dig.classList.add("dig");
-        dig.src = '/img/digits/0.png';
+        dig.classList.add('d0');
         dig.crossOrigin = 'anonymous';
         document.querySelector(".counter").append(dig);
     }
-    document.querySelectorAll('.dig')[1].src = '../img/digits/4.png';
+    document.querySelectorAll('.dig')[1].classList.add('d4');;
 }
 
 function createTimer() {
     for(let i = 0; i<3; i++) {
-        let dig = document.createElement('img');
+        let dig = document.createElement('div');
         dig.classList.add("num");
-        dig.src = '/img/digits/0.png';
+        dig.classList.add('d0');
         document.querySelector(".timer").append(dig);
     }
 }
@@ -65,6 +65,8 @@ function createTimer() {
 
 //counting flags
 function counter(decrease) {
+    const dozensPrev = Math.trunc(minesCount/10);
+    const unitsPrev = minesCount % 10;
     const digits = document.querySelectorAll('.dig');
     if (decrease) {
         minesCount--;
@@ -74,8 +76,10 @@ function counter(decrease) {
     //only 40 flags
     if (minesCount < 0) return;
     //getting pic from minesCount
-    digits[1].src = '/img/digits/' + Math.trunc(minesCount/10 )+ '.png';
-    digits[2].src = '/img/digits/' + minesCount%10 + '.png';
+    const dozens = Math.trunc(minesCount/10);
+    const units = minesCount % 10;
+    digits[1].classList.replace('d' + dozensPrev, 'd' + dozens)
+    digits[2].classList.replace('d' + unitsPrev, 'd' + units)
 }
 
 //functions to keep track of time
@@ -103,6 +107,7 @@ function resetTimer() {
 //convering time into pic
 function getTime(number){
     //don't play too log, it's only 16x16 field
+    
     if (number>999) {
         stopTimer;
         return;
@@ -159,12 +164,12 @@ function startGame(el) {
         //pressing leftClick and changing smile's face
         box.addEventListener('mousedown', (event) => {
             if (event.button == 0  && !gameOver){
-                smile.style.backgroundImage = "url('../img/smile/smile_shocked.png')";
+                smile.classList.toggle('smile-shocked');
             }
         });
         box.addEventListener('mouseup', (event) => {
             if (event.button == 0 && !gameOver){
-                smile.style.backgroundImage = "url('../img/smile/smile.png')";
+                smile.classList.toggle('smile-shocked');
             }
         });
     });
@@ -198,7 +203,7 @@ function leftClick() {
     let box = this;
     //if our box contains mine - we lose the game
     if (minesLocation.includes(box.id))  {
-        box.style.backgroundImage = "url('../img/blocks/pressed_bomb.png')";;
+        box.classList.add('bomb-pressed');;
         gameOver = true;
         showMines(box);
         return;
@@ -282,14 +287,14 @@ function checkMine(r, c) {
         document.querySelectorAll(".dig").forEach(dig => 
             dig.src = '/img/digits/0.png');
             gameOver = true;
-            smile.style.backgroundImage = "url('../img/smile/smile_cool.png')";
+            smile.classList.add('smile-cool');
     }
 }
 
 //if we failed:
 function showMines(pressed) {
     stopTimer();
-    smile.style.backgroundImage = "url('../img/smile/smile_sad.png')";
+    smile.classList.add('smile-sad');
     for (let r= 0; r < rows; r++) {
         for (let c = 0; c < columns; c++) {
             let box = matrix[r][c];
@@ -321,7 +326,8 @@ function reset () {
     document.querySelector(".matrix").innerHTML='';
     document.querySelector(".counter").innerHTML='';
     document.querySelector(".timer").innerHTML='';
-    smile.style.backgroundImage = "url('../img/smile/smile.png')";
+    smile.classList.toggle('smile-sad', false);
+    smile.classList.toggle('smile-cool',false);
 
     resetTimer();
     createWindow();
