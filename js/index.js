@@ -32,12 +32,12 @@ function createSmile() {
     smile.addEventListener('click', reset); //reseting game
     smile.addEventListener('mousedown', (event) => {
         if (event.button == 0){
-            smile.classList.toggle('smile-pressed')
+            smile.classList.add('smile-pressed')
         }
     }); //keydown
     smile.addEventListener('mouseup', (event) => {
         if (event.button == 0){
-            smile.classList.toggle('smile-pressed')
+            smile.classList.remove('smile-pressed')
         }
     }); //keyup
 }
@@ -107,15 +107,23 @@ function resetTimer() {
 //convering time into pic
 function getTime(number){
     //don't play too log, it's only 16x16 field
-    
+    const numberPrev = number-1;
+
+    const hundredsPrev = Math.trunc(numberPrev/100);
+    const dozensPrev = Math.trunc(numberPrev/10) % 10;
+    const unitsPrev = numberPrev % 10;
+
+    const hundreds = Math.trunc(number/100);
+    const dozens = Math.trunc(number/10) % 10;
+    const units = number % 10;
     if (number>999) {
         stopTimer;
         return;
     }
     const digits = document.querySelectorAll('.num');
-    digits[0].src = '/img/digits/' + Math.trunc(number/100)+ '.png';
-    digits[1].src = '/img/digits/' + Math.trunc(number/10) % 10 + '.png';
-    digits[2].src = '/img/digits/' + number % 10 + '.png';
+    digits[0].classList.replace('d' + hundredsPrev, 'd' + hundreds);
+    digits[1].classList.replace('d' + dozensPrev, 'd' + dozens)
+    digits[2].classList.replace('d' + unitsPrev, 'd' + units);
 }
 //counting seconds
 function timer() {
